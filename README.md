@@ -9,7 +9,7 @@ index.html          页面骨架
 css/style.css       样式
 js/app.js           渲染与路由逻辑
 data/site.json      全站内容数据（profile + sections）
-uploads/photo.jpg   个人照片
+uploads/portrait.jpg  个人照片
 assets/favicon.svg  站点图标
 如何更新主页.md      面向非技术用户的中文操作说明
 ```
