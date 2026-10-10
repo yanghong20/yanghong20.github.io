@@ -9,6 +9,78 @@
   var $ = function (s) { return document.querySelector(s); };
   var main = $('#main'), navlinks = $('#navlinks'), navEl = $('#nav');
 
+  /* ---------- 语言与界面文案 ---------- */
+  var IS_EN = (document.documentElement.getAttribute('data-lang') || 'zh').toLowerCase() === 'en';
+  var DATA_URL = IS_EN ? 'data/site-en.json' : 'data/site.json';
+  var OTHER_PAGE = IS_EN ? 'index.html' : 'en.html';
+  var T = IS_EN ? {
+    tagLink: 'Link',
+    tagText: 'Text',
+    emptyList: 'No content yet',
+    defaultAffil: 'Academic Homepage',
+    ctaPubs: 'Publications',
+    ctaContact: 'Contact',
+    scrollHint: 'Scroll down',
+    aboutKicker: 'About',
+    aboutTitle: 'Biography',
+    noBio: 'Biography to be added.',
+    labelAffil: 'Affiliation',
+    labelTitle: 'Title',
+    labelInterests: 'Research Areas',
+    interestsKicker: 'Research',
+    interestsTitle: 'Research Interests',
+    overview: 'Overview',
+    recent: 'Recent',
+    none: 'None',
+    count: function (n) { return n + (n === 1 ? ' item' : ' items'); },
+    contactTitle: 'Get in <em>Touch</em>',
+    contactLead: 'Feel free to get in touch if you share an interest in these research areas.',
+    emailMe: 'Email Me',
+    facultyPage: 'Faculty Page',
+    navHome: 'Home',
+    navContact: 'Contact',
+    noResults: 'No results found',
+    pdfMobile: 'Your browser may not preview PDFs inline.<br><br>',
+    pdfOpen: 'Open PDF in a new tab',
+    pdfTitle: 'PDF preview',
+    loadFail: 'Failed to load content. Please serve the site over a web server (see README).',
+    langLabel: '中文',
+    langTitle: '切换到中文'
+  } : {
+    tagLink: '链接',
+    tagText: '正文',
+    emptyList: '暂无内容',
+    defaultAffil: '个人学术主页',
+    ctaPubs: '查看论著成果',
+    ctaContact: '联系我',
+    scrollHint: '向下浏览',
+    aboutKicker: '关于我',
+    aboutTitle: '简介',
+    noBio: '暂无简介。',
+    labelAffil: '工作单位',
+    labelTitle: '职称',
+    labelInterests: '研究方向',
+    interestsKicker: '研究方向',
+    interestsTitle: '研究兴趣',
+    overview: '学术概览',
+    recent: '最新动态',
+    none: '暂无',
+    count: function (n) { return n + ' 条'; },
+    contactTitle: '欢迎<em>交流</em>与合作',
+    contactLead: '如对相关研究方向感兴趣，欢迎通过以下方式联系我。',
+    emailMe: '发送邮件',
+    facultyPage: '学院主页',
+    navHome: '首页',
+    navContact: '联系',
+    noResults: '未找到相关内容',
+    pdfMobile: '手机浏览器可能无法直接内嵌预览 PDF。<br><br>',
+    pdfOpen: '在新标签页打开 PDF',
+    pdfTitle: 'PDF 预览',
+    loadFail: '数据加载失败，请确认通过本地服务器访问（见 README）。',
+    langLabel: 'EN',
+    langTitle: 'Switch to English'
+  };
+
   /* ---------- 基础工具 ---------- */
   function esc(s) {
     return String(s == null ? '' : s)
@@ -110,9 +182,9 @@
       mBody.className = 'pdfbox';
       var isMobile = window.matchMedia('(max-width: 860px)').matches;
       mBody.innerHTML = isMobile
-        ? '<div class="pdffb">手机浏览器可能无法直接内嵌预览 PDF。<br><br>' +
-          '<a class="btn btn-primary" href="' + opts.pdf + '" target="_blank" rel="noopener">在新标签页打开 PDF</a></div>'
-        : '<iframe src="' + opts.pdf + '#view=FitH" title="PDF 预览"></iframe>';
+        ? '<div class="pdffb">' + T.pdfMobile +
+          '<a class="btn btn-primary" href="' + opts.pdf + '" target="_blank" rel="noopener">' + T.pdfOpen + '</a></div>'
+        : '<iframe src="' + opts.pdf + '#view=FitH" title="' + T.pdfTitle + '"></iframe>';
     }
     mOpen.style.display = opts.openUrl ? 'inline-flex' : 'none';
     if (opts.openUrl) mOpen.href = opts.openUrl;
@@ -132,8 +204,8 @@
   /* ---------- 条目 ---------- */
   function itemTag(it) {
     if (it.type === 'pdf') return '<span class="tag">PDF</span>';
-    if (it.type === 'url') return '<span class="tag">链接</span>';
-    if (it.type === 'text') return '<span class="tag">正文</span>';
+    if (it.type === 'url') return '<span class="tag">' + T.tagLink + '</span>';
+    if (it.type === 'text') return '<span class="tag">' + T.tagText + '</span>';
     return '';
   }
   function itemBody(it) {
@@ -162,7 +234,7 @@
   function listEl(items) {
     var ul = h('ul', 'list');
     if (!items || !items.length) {
-      ul.appendChild(h('li', 'empty', '暂无内容'));
+      ul.appendChild(h('li', 'empty', T.emptyList));
       return ul;
     }
     items.forEach(function (it) { ul.appendChild(itemLi(it)); });
@@ -233,20 +305,20 @@
     var intro = p.tagline ? '<p>' + esc(p.tagline) + '</p>' : '';
     hero.innerHTML =
       '<div class="wrap hero-inner">' +
-        '<div class="eyebrow">' + esc(p.affil || '个人学术主页') + (p.title ? ' · ' + esc(p.title) : '') + '</div>' +
+        '<div class="eyebrow">' + esc(p.affil || T.defaultAffil) + (p.title ? ' · ' + esc(p.title) : '') + '</div>' +
         '<h1>' + esc(p.name || '') + '</h1>' +
         (p.enName ? '<div class="en">' + esc(p.enName) + '</div>' : '') +
         intro +
       '</div>' +
-      '<div class="scroll-hint">向下浏览</div>';
+      '<div class="scroll-hint">' + T.scrollHint + '</div>';
     if (!p.tagline && p.bio) {
       hero.querySelector('.hero-inner').insertAdjacentHTML('beforeend',
         '<p>' + esc(p.bio.slice(0, 90)) + (p.bio.length > 90 ? '…' : '') + '</p>');
     }
     var cta = h('div', 'hero-cta');
     cta.innerHTML =
-      '<a class="btn btn-primary" href="#/sec-pub">查看论著成果</a>' +
-      '<a class="btn btn-ghost" href="#/contact">联系我</a>';
+      '<a class="btn btn-primary" href="#/sec-pub">' + T.ctaPubs + '</a>' +
+      '<a class="btn btn-ghost" href="#/contact">' + T.ctaContact + '</a>';
     hero.querySelector('.hero-inner').appendChild(cta);
     main.appendChild(hero);
 
@@ -254,11 +326,11 @@
     var about = h('section', 'section');
     about.id = 'about';
     var wrapA = h('div', 'wrap');
-    wrapA.innerHTML = '<div class="kicker">关于我</div><h2 class="sec-title">简介</h2>';
+    wrapA.innerHTML = '<div class="kicker">' + T.aboutKicker + '</div><h2 class="sec-title">' + T.aboutTitle + '</h2>';
     var grid = h('div', 'about-grid');
     var txt = h('div', 'about-text');
     var paragraphs = String(p.bio || '').split(/\n+/).filter(Boolean);
-    if (!paragraphs.length) paragraphs = ['暂无简介。'];
+    if (!paragraphs.length) paragraphs = [T.noBio];
     paragraphs.forEach(function (t) { txt.appendChild(h('p', null, esc(t))); });
     var photo = h('img', 'profile-photo');
     photo.src = p.photo || 'assets/avatar.svg';
@@ -269,9 +341,9 @@
 
     var pillars = h('div', 'pillars');
     [
-      ['工作单位', p.affil || ''],
-      ['职称', p.title || ''],
-      ['研究方向', (p.interests || []).slice(0, 3).join(' · ')]
+      [T.labelAffil, p.affil || ''],
+      [T.labelTitle, p.title || ''],
+      [T.labelInterests, (p.interests || []).slice(0, 3).join(' · ')]
     ].forEach(function (kv) {
       if (!kv[1]) return;
       pillars.appendChild(h('div', 'pillar',
@@ -286,7 +358,7 @@
       var it = h('section', 'section');
       it.style.paddingTop = '0';
       var wrapI = h('div', 'wrap');
-      wrapI.innerHTML = '<div class="kicker">研究方向</div><h2 class="sec-title">研究兴趣</h2>';
+      wrapI.innerHTML = '<div class="kicker">' + T.interestsKicker + '</div><h2 class="sec-title">' + T.interestsTitle + '</h2>';
       var cloud = h('div', 'skill-cloud');
       p.interests.forEach(function (x, idx) {
         cloud.appendChild(h('span', 'skill-pill' + (idx === 0 ? ' featured' : ''), esc(x)));
@@ -303,11 +375,11 @@
     var hg = h('div', 'home-grid');
 
     var cStat = h('div', 'card');
-    cStat.innerHTML = '<h3>学术概览</h3><ul class="ct-list" id="statList"></ul>';
+    cStat.innerHTML = '<h3>' + T.overview + '</h3><ul class="ct-list" id="statList"></ul>';
     hg.appendChild(cStat);
 
     var cNews = h('div', 'card');
-    cNews.innerHTML = '<h3>最新动态</h3><ul class="ct-list" id="newsList"></ul>';
+    cNews.innerHTML = '<h3>' + T.recent + '</h3><ul class="ct-list" id="newsList"></ul>';
     hg.appendChild(cNews);
 
     wrapO.appendChild(hg);
@@ -318,9 +390,9 @@
     (DATA.sections || []).forEach(function (s) {
       var n = (s.items || []).length;
       (s.subsections || []).forEach(function (sb) { n += (sb.items || []).length; });
-      counts.push('<li><span class="lb">' + esc(s.title) + '</span><span class="vl">' + n + ' 条</span></li>');
+      counts.push('<li><span class="lb">' + esc(s.title) + '</span><span class="vl">' + T.count(n) + '</span></li>');
     });
-    $('#statList').innerHTML = counts.join('') || '<li><span class="vl">暂无</span></li>';
+    $('#statList').innerHTML = counts.join('') || '<li><span class="vl">' + T.none + '</span></li>';
 
     var recent = allItems().filter(function (x) { return x.item.year; })
       .sort(function (a, b) { return b.item.year - a.item.year; }).slice(0, 6);
@@ -328,7 +400,7 @@
       ? recent.map(function (x) {
           return '<li><span class="lb">' + esc(x.item.year) + '</span><span class="vl">' + esc(x.item.title) + '</span></li>';
         }).join('')
-      : '<li><span class="vl">暂无</span></li>';
+      : '<li><span class="vl">' + T.none + '</span></li>';
 
     /* 联系 */
     var ct = h('section', 'section');
@@ -340,12 +412,12 @@
     var home = (contacts.filter(function (c) { return /^https?:/.test(c.href || ''); })[0] || {});
     var card = h('div', 'contact-card');
     card.innerHTML =
-      '<h2>欢迎<em>交流</em>与合作</h2>' +
-      '<p>如对相关研究方向感兴趣，欢迎通过以下方式联系我。</p>' +
+      '<h2>' + T.contactTitle + '</h2>' +
+      '<p>' + T.contactLead + '</p>' +
       (mail ? '<div class="addr">' + esc(mail) + '</div>' : '');
     var row = h('div', 'contact-row');
-    if (mail) row.insertAdjacentHTML('beforeend', '<a class="btn btn-primary" href="mailto:' + esc(mail) + '">发送邮件</a>');
-    if (home.href) row.insertAdjacentHTML('beforeend', '<a class="btn btn-ghost" href="' + esc(home.href) + '" target="_blank" rel="noopener">学院主页</a>');
+    if (mail) row.insertAdjacentHTML('beforeend', '<a class="btn btn-primary" href="mailto:' + esc(mail) + '">' + T.emailMe + '</a>');
+    if (home.href) row.insertAdjacentHTML('beforeend', '<a class="btn btn-ghost" href="' + esc(home.href) + '" target="_blank" rel="noopener">' + T.facultyPage + '</a>');
     card.appendChild(row);
 
     var others = contacts.filter(function (c) { return c.label && c.value && c.value !== mail; });
@@ -402,6 +474,8 @@
   function route() {
     var hash = (location.hash || '').replace(/^#\/?/, '');
     if (!hash) hash = 'home';
+    var langA = navlinks.querySelector('a.lang');
+    if (langA) langA.href = OTHER_PAGE + (hash === 'home' ? '' : '#/' + hash);
     Array.prototype.forEach.call(navlinks.querySelectorAll('a'), function (a) {
       a.classList.toggle('on', a.dataset.route === hash);
     });
@@ -412,11 +486,13 @@
     window.scrollTo(0, 0);
   }
   function renderNav() {
-    var html = '<a href="#/home" data-route="home">首页</a>';
+    var html = '<a href="#/home" data-route="home">' + T.navHome + '</a>';
     (DATA.sections || []).forEach(function (s) {
       html += '<a href="#/' + esc(s.id) + '" data-route="' + esc(s.id) + '">' + esc(s.title) + '</a>';
     });
-    html += '<a href="#/home" data-scrollto="contact">联系</a>';
+    html += '<a href="#/home" data-scrollto="contact">' + T.navContact + '</a>';
+    html += '<a class="lang" href="' + OTHER_PAGE + '" hreflang="' + (IS_EN ? 'zh-CN' : 'en') + '"' +
+            ' title="' + esc(T.langTitle) + '">' + esc(T.langLabel) + '</a>';
     navlinks.innerHTML = html;
   }
 
@@ -465,7 +541,7 @@
     });
     var out = '';
     if (!hits.length) {
-      out = '<div class="none">未找到相关内容</div>';
+      out = '<div class="none">' + T.noResults + '</div>';
     } else {
       var last = '';
       hits.slice(0, 40).forEach(function (x) {
@@ -524,13 +600,13 @@
   }, { passive: true });
 
   /* ---------- 启动 ---------- */
-  fetch('data/site.json').then(function (r) {
+  fetch(DATA_URL).then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
   }).then(function (d) {
     DATA = d;
     document.title = (d.profile && d.profile.name ? d.profile.name + ' · ' : '') +
-      ((d.profile && d.profile.affil) || '个人学术主页');
+      ((d.profile && d.profile.affil) || T.defaultAffil);
     if (d.profile) {
       var desc = document.querySelector('meta[name="description"]');
       if (desc && d.profile.bio) desc.setAttribute('content', d.profile.bio.slice(0, 120));
@@ -540,7 +616,7 @@
     renderNav();
     route();
   }).catch(function () {
-    main.innerHTML = '<div class="section"><div class="wrap"><p style="color:#b3a8c4">数据加载失败，请确认通过本地服务器访问（见 README）。</p></div></div>';
+    main.innerHTML = '<div class="section"><div class="wrap"><p style="color:#b3a8c4">' + T.loadFail + '</p></div></div>';
   });
 
   window.addEventListener('hashchange', function () { if (DATA) route(); });

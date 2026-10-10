@@ -1,0 +1,923 @@
+{
+  "profile": {
+    "name": "Hong Yang",
+    "enName": "杨红",
+    "title": "Associate Professor · Doctoral Supervisor",
+    "roles": "Director, Teaching and Research Section of Ancient Chinese; Secretary, Second Faculty Party Branch, School of Chinese Language and Literature (Party Branch of the Hubei University National Language Promotion Base)",
+    "affil": "School of Chinese Language and Literature, Hubei University",
+    "photo": "uploads/portrait.jpg",
+    "bio": "Hong Yang is Associate Professor and Doctoral Supervisor at the School of Chinese Language and Literature, Hubei University.\nShe holds an MA and a PhD in Chinese Philology and completed postdoctoral research in Chinese Philology at Hunan Normal University.\nShe has led a number of research projects, published numerous journal articles and one monograph, and received the Third Prize of the 15th Hubei Provincial Award for Outstanding Achievements in Social Sciences.",
+    "interests": [
+      "Chinese Grammar",
+      "Early Modern Chinese",
+      "Construction Grammar",
+      "International Chinese Language Education"
+    ],
+    "contacts": [
+      {
+        "label": "Email",
+        "value": "yanghong@hubu.edu.cn",
+        "href": "mailto:yanghong@hubu.edu.cn"
+      },
+      {
+        "label": "Affiliation",
+        "value": "School of Chinese Language and Literature, Hubei University",
+        "href": ""
+      },
+      {
+        "label": "Faculty Page",
+        "value": "wxy.hubu.edu.cn",
+        "href": "https://wxy.hubu.edu.cn/info/1068/2343.htm"
+      }
+    ],
+    "tagline": "Tracing how constructions emerge and evolve across the history of Chinese."
+  },
+  "sections": [
+    {
+      "id": "sec-pub",
+      "title": "Publications",
+      "kicker": "Research Output",
+      "desc": "Books and journal articles, listed by year.",
+      "subsections": [
+        {
+          "id": "sub-books",
+          "title": "Books",
+          "items": [
+            {
+              "id": "it-b1",
+              "title": "A Typological Study of Serial Verb Constructions in Ming–Qing Chinese",
+              "meta": "Hong Yang · Wuhan: Huazhong University of Science and Technology Press · 2023",
+              "year": 2023,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "sub-papers",
+          "title": "Journal Articles",
+          "items": [
+            {
+              "id": "it-p1",
+              "title": "Applying Traditional Chinese Culture in International Chinese Language Education: A Case Study of Ancient Chinese Coin Culture",
+              "meta": "Hong Yang · Journal of Wuhan University of Technology (Social Sciences Edition), 2025, No. 5",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p2",
+              "title": "Project-Based Learning Design for Lu You's Works in Junior Secondary Chinese",
+              "meta": "Hong Yang · Secondary School Chinese, 2025, No. 6",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p3",
+              "title": "A Typological Analysis of Serial Verb Constructions in Ming–Qing Chinese",
+              "meta": "Hong Yang · Journal of Hubei University (Philosophy and Social Sciences), 2022, No. 3",
+              "year": 2022,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p4",
+              "title": "Teaching Ancient Chinese in the Context of the New Liberal Arts Initiative",
+              "meta": "Hong Yang · Journal of Wuhan University of Technology (Social Sciences Edition), 2022, No. 1",
+              "year": 2022,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p5",
+              "title": "Characteristics of Serial Verb Constructions in Ming–Qing Chinese",
+              "meta": "Hong Yang · Chinese Linguistics, 2020, No. 4",
+              "year": 2020,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p6",
+              "title": "A Review of Research on Chinese Serial Verb Constructions",
+              "meta": "Hong Yang · Journal of Tonghua Normal University, 2019, No. 3",
+              "year": 2019,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p7",
+              "title": "The Distinctiveness of Serial Verb Constructions from the Perspective of Phrase-Oriented Grammar",
+              "meta": "Hong Yang · Journal of Hubei University (Philosophy and Social Sciences), 2017, No. 5",
+              "year": 2017,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p8",
+              "title": "Features and a Cognitive Account of Reversible Serial Verb Constructions in Chinese",
+              "meta": "Hong Yang, Shi Qin · Hubei Social Sciences, 2016, No. 11",
+              "year": 2016,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p9",
+              "title": "The Repetitive Aspect in Ming–Qing Chinese and Its Origin",
+              "meta": "Shi Qin, Hong Yang · Chinese Linguistics, 2016, No. 4",
+              "year": 2016,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-p10",
+              "title": "Xing Fuyi's Research on Chinese Adjectives",
+              "meta": "Shi Qin, Hong Yang, Zhu Lishi · Journal of Hubei Normal University (Philosophy and Social Sciences), 2015, No. 2",
+              "year": 2015,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-proj",
+      "title": "Research Projects",
+      "kicker": "Projects",
+      "desc": "National, provincial and university-level projects, as principal investigator and as participant.",
+      "subsections": [
+        {
+          "id": "sub-host",
+          "title": "As Principal Investigator",
+          "items": [
+            {
+              "id": "it-h1",
+              "title": "A Practice-Oriented Model for National-Conditions Education of International Students Based on Hubei's Local Resources and Digital Humanities",
+              "meta": "2026 · Hubei University Teaching Reform Project for International Students · In progress",
+              "year": 2026,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-h2",
+              "title": "The Historical Evolution of Serial Verb Constructions in Middle Chinese: A Construction Network Approach",
+              "meta": "2025 · National Social Science Fund, Youth Project · In progress",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-h3",
+              "title": "The Evolution of Middle Chinese Serial Verb Constructions and the Interaction Mechanisms of Their Network",
+              "meta": "2025 · China Postdoctoral Science Foundation, 78th Batch General Grant · In progress",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-h4",
+              "title": "Chinese Serial Verb Constructions from a Typological Perspective",
+              "meta": "2021 · Hubei Provincial Department of Education, Philosophy and Social Sciences Youth Project · Completed",
+              "year": 2021,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-h5",
+              "title": "Serial Verb Constructions in Ming–Qing Chinese",
+              "meta": "2019 · Ministry of Education Humanities and Social Sciences Fund, Youth Project (No. 19YJC740101) · Completed",
+              "year": 2019,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-h6",
+              "title": "Serial Verb Constructions in Ming–Qing Chinese",
+              "meta": "2018 · Hubei Provincial Social Science Fund, General Project (Publication Subsidy) · Completed",
+              "year": 2018,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "sub-join",
+          "title": "As Participant",
+          "items": [
+            {
+              "id": "it-j1",
+              "title": "The Transformation and Evolution of Chinese Grammar since the Late Qing",
+              "meta": "2025 · National Social Science Fund, Major Bidding Project · In progress",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-j2",
+              "title": "Spatio-Temporal Research on Chinese Function Words in Hunan and Neighbouring Provinces, and Database Construction",
+              "meta": "2021 · National Social Science Fund, Major Bidding Project · In progress",
+              "year": 2021,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-j3",
+              "title": "The Historical Evolution of Complex Sentences in Chinese",
+              "meta": "2021 · National Social Science Fund, Youth Project · Completed",
+              "year": 2021,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-j4",
+              "title": "Reforming the Training Model for the Master's Programme in Teaching Chinese to Speakers of Other Languages under the New Liberal Arts Initiative",
+              "meta": "2021 · Hubei University Graduate Teaching Reform Project",
+              "year": 2021,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-j5",
+              "title": "Reforming Courses on Reading Classic Works of Traditional Culture in the Context of First-Class Undergraduate Education: Intensive Reading of the Analects as a Case Study",
+              "meta": "2020 · Hubei University Undergraduate Teaching Research Project",
+              "year": 2020,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-j6",
+              "title": "Ming–Qing Chinese Grammar from a Typological Perspective",
+              "meta": "2015 · National Social Science Fund, Major Bidding Project · Completed",
+              "year": 2015,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-talk",
+      "title": "Talks & Conferences",
+      "kicker": "Academic Exchange",
+      "desc": "Conference presentations and invited lectures in China and abroad.",
+      "items": [
+        {
+          "id": "it-t1",
+          "title": "A Contrastive Study of 'jiao' Sentences in the Zhoukou Dialect of Henan and an Analysis of Their Ambiguity",
+          "meta": "2025 · 9th Southern Forum on Advanced Linguistic Research · 14–17 November 2025, Changsha, Hunan, Hunan Normal University",
+          "year": 2025,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t2",
+          "title": "Constructional Contamination: Theory, Case Studies and Implications for Chinese Linguistics",
+          "meta": "2025 · 6th Forum on Construction Grammar Research · 28–29 June 2025, Guangzhou, Guangdong, Guangdong University of Foreign Studies",
+          "year": 2025,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t3",
+          "title": "Constructional Contamination: Theory, Case Studies and Implications for Chinese Linguistics",
+          "meta": "2025 · Flat Workshop on \"Construction Networks, Grammar and Rhetoric\" · 29–30 March 2025, Wuhan, Hubei, Wuhan University",
+          "year": 2025,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t4",
+          "title": "Matching between Interrogative Modal Adverbs and Interrogative Sentence Types, and Its Motivations",
+          "meta": "2024 · 8th Southern Forum on Advanced Linguistic Research · 6–8 December 2024, Changsha, Hunan, Hunan Normal University",
+          "year": 2024,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t5",
+          "title": "Matching between Interrogative Modal Adverbs and Interrogative Sentence Types: A Study of Motivational Mechanisms",
+          "meta": "2024 · International Symposium on Chinese Function Words · 19–20 October 2024, Wuhan, Hubei, Central China Normal University",
+          "year": 2024,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t6",
+          "title": "A Review of Research on Serial Verb Constructions in China and Abroad",
+          "meta": "2024 · Symposium on Complex Predicate Structures in the History of Chinese Grammar · 12–14 July 2024, Beijing, Institute of Linguistics, CASS",
+          "year": 2024,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t7",
+          "title": "Grammatical Differences between Northern and Southern Mandarin in the Late Qing as Seen from Mandarin Textbooks of the Period",
+          "meta": "2024 · Forum on Chinese Historical Linguistics and Launch of Lu Liehong's Posthumous Work · 23–24 March 2024, Wuhan, Hubei, Wuhan University",
+          "year": 2024,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t8",
+          "title": "The Diachronic Evolution of Ming–Qing Serial Verb Constructions and Its Motivational Mechanisms",
+          "meta": "2022 · 2nd Guizi Mountain Young Linguists' Roundtable · 10 December 2022, Wuhan, Hubei, Central China Normal University",
+          "year": 2022,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t9",
+          "title": "A Typological Analysis of Serial Verb Constructions in Ming–Qing Chinese",
+          "meta": "2022 · 19th National Conference on Early Modern Chinese · 25–26 June 2022, online, Liaoning Normal University",
+          "year": 2022,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t10",
+          "title": "Characteristics of Serial Verb Constructions in Ming–Qing Chinese",
+          "meta": "2020 · 1st Guizi Mountain Young Linguists' Roundtable · 4 December 2020, Wuhan, Hubei, Central China Normal University",
+          "year": 2020,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-t11",
+          "title": "Properties and Cross-Linguistic Representation of Chinese Serial Verb Constructions under Typological Comparative Concepts: The Case of Ming–Qing Chinese",
+          "meta": "2018 · 18th National Conference on Early Modern Chinese · 27–28 October 2018, Wuhan, Hubei, Hubei University",
+          "year": 2018,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "sec-teach",
+      "title": "Teaching",
+      "kicker": "Teaching",
+      "desc": "Courses taught and thesis supervision.",
+      "subsections": [
+        {
+          "id": "sub-course",
+          "title": "Courses",
+          "items": [
+            {
+              "id": "it-c1",
+              "title": "Ancient Chinese",
+              "meta": "Compulsory, Undergraduate",
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-c2",
+              "title": "Research Methodology in Chinese Language and Literature",
+              "meta": "Compulsory, Postgraduate",
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-c3",
+              "title": "Chinese Historical Semantics (Xunguxue)",
+              "meta": "Elective, Postgraduate",
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-c4",
+              "title": "Topics in the International Promotion of Chinese",
+              "meta": "Elective, Postgraduate",
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-c5",
+              "title": "Advanced Comprehensive Chinese for International Students",
+              "meta": "Compulsory, International Students",
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-c6",
+              "title": "Advanced Chinese Listening for International Students",
+              "meta": "Compulsory, International Students",
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "sub-ba",
+          "title": "BA Thesis Supervision",
+          "items": [
+            {
+              "id": "it-ba1",
+              "title": "A Multi-Dimensional Study of Semantic Inflation in Internet Language",
+              "meta": "Liu Shan · BA thesis, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba2",
+              "title": "A Study of the Chinese Names of Sinologists in the Late Ming and Early Qing",
+              "meta": "Sun Jiaxian · BA thesis, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba3",
+              "title": "A Multi-Dimensional Study of the Word-Formation Pattern 'X + dazi (buddy)'",
+              "meta": "Zheng Huiyi · BA thesis, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba4",
+              "title": "Nouns Used as Verbs in Chinese Internet Neologisms",
+              "meta": "Guo Siqi · BA thesis, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba5",
+              "title": "An Analysis of 'nei + V' Expressions in Chinese Internet Slang",
+              "meta": "Deng Keruhui · BA thesis, Hubei University, 2025 · Outstanding BA thesis, School level",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba6",
+              "title": "Chinese Loanwords Relating to Food, Clothing, Housing and Transport in the Bai Language of Dali",
+              "meta": "Wang Yifei · BA thesis, Hubei University, 2025 · Outstanding BA thesis, University level",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba7",
+              "title": "A Preliminary Analysis of the Emerging Polar-Degree Construction 'X ku le'",
+              "meta": "Lü Zengjie · BA thesis, Hubei University, 2024",
+              "year": 2024,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba8",
+              "title": "Teaching Reading and Writing of Phonosemantic Characters through Component-Based Cognitive Instruction",
+              "meta": "Yang Ruohan · BA thesis, Hubei University, 2024",
+              "year": 2024,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba9",
+              "title": "A Multi-Perspective Study of the Emerging Construction 'zhuda yige X'",
+              "meta": "Zou Zixiao · BA thesis, Hubei University, 2024",
+              "year": 2024,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba10",
+              "title": "The Selection of Lu You's Classical Works in State-Compiled Junior Secondary Chinese Textbooks and Teaching Strategies",
+              "meta": "Shu Mei · BA thesis, Hubei University, 2024 · Outstanding BA thesis, University level",
+              "year": 2024,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba11",
+              "title": "An Analysis of 'juejuezi' and Related Chinese Internet Slang",
+              "meta": "Lu Yingqi · BA thesis, Hubei University, 2023 · Outstanding BA thesis, University level",
+              "year": 2023,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba12",
+              "title": "The Interjectional Use and Functions of 'zui le' in Modern Chinese",
+              "meta": "Guo Yiwen · BA thesis, Hubei University, 2023",
+              "year": 2023,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba13",
+              "title": "A Contrastive Study of the 'V bu/de C' Potential Complement Construction in Yangzhou Shuoshu Xuan and Xiao'e",
+              "meta": "Li Keren · BA thesis, Hubei University, 2022",
+              "year": 2022,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba14",
+              "title": "The Interjectionalisation of 'wo dao' in Modern Chinese and Its Marking Functions",
+              "meta": "He Zhichen · BA thesis, Hubei University, 2022",
+              "year": 2022,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba15",
+              "title": "A Contrastive Study of 'V de/bu C' Potential Complement Constructions in Xiaoni Bao and Yishi Yumo",
+              "meta": "Ma Moerazixin · BA thesis, Hubei University, 2022",
+              "year": 2022,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba16",
+              "title": "A Dialect-Geographical Analysis of the First-Person Pronoun 'an'",
+              "meta": "Qian Manling · BA thesis (double major), Hubei University, 2022 · Outstanding BA thesis, School level",
+              "year": 2022,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ba17",
+              "title": "New Meanings of an Old Word: The Internet Slang 'hao yangmao'",
+              "meta": "Chen Wenhui · BA thesis, Hubei University, 2022 · Outstanding BA thesis, University level",
+              "year": 2022,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "sub-ma",
+          "title": "MA Thesis Supervision",
+          "items": [
+            {
+              "id": "it-ma1",
+              "title": "A Study of the Application of Comforting Expressions in International Chinese Language Education",
+              "meta": "Chen Mengru · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2026",
+              "year": 2026,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma2",
+              "title": "Applying Jing-Chu Culture in International Chinese Language Education",
+              "meta": "Kuang Heng · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2026",
+              "year": 2026,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma3",
+              "title": "Teaching 'you' Sentences to Learners of Chinese Based on the Construction–Chunk Theory",
+              "meta": "Liu Chenlong · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2026",
+              "year": 2026,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma4",
+              "title": "Purpose-Type Serial Verb Constructions in Ming–Qing Chinese",
+              "meta": "Liang Xinyi · MA thesis, Chinese Philology, Hubei University, 2026",
+              "year": 2026,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma5",
+              "title": "A Study of Differentiated Instruction in Serial Verb Sentences for International Students",
+              "meta": "Li Qing · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma6",
+              "title": "Instructional Design for Cantonese Morning Tea Culture in International Chinese Language Education",
+              "meta": "Ding Chenrui · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma7",
+              "title": "Teaching Chinese Serial Verb and Pivotal Sentences through Project-Based Learning",
+              "meta": "Sun Lu · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma8",
+              "title": "A Study of Serial Verb Constructions in Xiao'e and Chun A Shi",
+              "meta": "Liu Jiahui · MA thesis, Chinese Philology, Hubei University, 2025",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma9",
+              "title": "A Comparative Study of Serial Verb Constructions in the Xianyu Jing and A New Account of Tales of the World",
+              "meta": "Cai Xianghui · MA thesis, Chinese Philology, Hubei University, 2025 · Outstanding MA thesis, School level",
+              "year": 2025,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma10",
+              "title": "Grammar Alignment between Road to Success and the Chinese Proficiency Grading Standards for International Chinese Language Education",
+              "meta": "Shan Zhuoting · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2024",
+              "year": 2024,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma11",
+              "title": "A Comparative Study of Grammar in Late-Qing Mandarin Textbooks: Qingwen Zhiyao, Yuyan Zierji (Tanlun Pian), Xue Guanhua and Bai Xing Guanhua",
+              "meta": "Yuan Yue · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2024",
+              "year": 2024,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma12",
+              "title": "Grammar Alignment between the Elementary and Intermediate Volumes of Developing Chinese and the Grammar Syllabus of the Chinese Proficiency Grading Standards",
+              "meta": "Yao Wenyan · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2023",
+              "year": 2023,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            },
+            {
+              "id": "it-ma13",
+              "title": "The Compilation and Acquisition of Marked Coordinate Complex Sentences in HSK Standard Course",
+              "meta": "Zheng Ahui · MA thesis, Teaching Chinese to Speakers of Other Languages, Hubei University, 2023",
+              "year": 2023,
+              "type": "none",
+              "url": "",
+              "pdf": "",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-award",
+      "title": "Honours & Awards",
+      "kicker": "Recognition",
+      "desc": "Awards and honours for research, teaching and supervision.",
+      "items": [
+        {
+          "id": "it-ymcdsku",
+          "title": "Third Prize, 15th Hubei Provincial Award for Outstanding Achievements in Social Sciences",
+          "meta": "2026 · Provincial level · Hubei Provincial People's Government",
+          "year": 2026,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a1",
+          "title": "\"Outstanding Party Member\", School of Chinese Language and Literature, Hubei University",
+          "meta": "2023 / 2024 / 2025 / 2026 · School level · School of Chinese Language and Literature, Hubei University",
+          "year": 2026,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a2",
+          "title": "Supervision of a Master's Thesis Recognised as an Outstanding University-Level Thesis",
+          "meta": "2025 · School level · Hubei University",
+          "year": 2025,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a3",
+          "title": "National First-Class Undergraduate Course \"Ancient Chinese and the Reading of Classical Texts\" (Zhang Pengfei / Hong Yang / Hu Ping / Zhu Lishi)",
+          "meta": "2025 · National level · Ministry of Education",
+          "year": 2025,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a4",
+          "title": "Supervision of BA Theses Recognised as Outstanding University-Level Theses",
+          "meta": "2022 / 2023 / 2024 / 2025 · University level · Hubei University",
+          "year": 2025,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a5",
+          "title": "Excellence Award, University Student Category, 5th Chinese Classics Recitation, Writing and Speech Competition — \"Poetry Teaching China\" Poetry Explanation Contest (as student advisor)",
+          "meta": "2023 · National level · Ministry of Education",
+          "year": 2023,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a6",
+          "title": "Third Prize, 8th \"Tin Ka Ping Cup\" National Teaching Skills Competition for Normal University Students (as student advisor)",
+          "meta": "2023 · National level · Ministry of Education",
+          "year": 2023,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a7",
+          "title": "Third Prize, 12th Hubei Provincial Teaching Skills Competition for Normal-Programme Undergraduates (as student advisor)",
+          "meta": "2023 · Provincial level · Hubei Province",
+          "year": 2023,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a8",
+          "title": "First Prize, 13th Hubei University Teaching Skills Competition for Normal-Programme Undergraduates (as student advisor)",
+          "meta": "2023 · University level · Hubei University",
+          "year": 2023,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a9",
+          "title": "\"Most Charismatic Young Teacher\" (Students' Choice), 6th Edition",
+          "meta": "2022 · University level · Hubei University",
+          "year": 2022,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        },
+        {
+          "id": "it-a10",
+          "title": "\"Outstanding Class Advisor\", School of Chinese Language and Literature, Hubei University",
+          "meta": "2022 · School level · School of Chinese Language and Literature, Hubei University",
+          "year": 2022,
+          "type": "none",
+          "url": "",
+          "pdf": "",
+          "text": ""
+        }
+      ]
+    }
+  ]
+}
