@@ -1,18 +1,36 @@
 /* ============================================================
-   杨红个人学术网站 —— 前台脚本
+   杨红 · 湖北大学文学院 —— 前台脚本
+   数据来源：data/site.json（静态文件）
    ============================================================ */
 (function () {
   'use strict';
 
   var DATA = null;
   var $ = function (s) { return document.querySelector(s); };
-  var main = $('#main'), nav = $('#nav');
+  var main = $('#main'), navlinks = $('#navlinks'), navEl = $('#nav');
 
-  /* ---------- 轻量 Markdown 渲染 ---------- */
+  /* ---------- 基础工具 ---------- */
   function esc(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
+  function h(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  /* 把 meta 拆成「年份」与「其余」两部分，年份用于左侧栏 */
+  function splitMeta(meta, year) {
+    meta = meta || '';
+    var m = /^(\d{4})\s*[·•:：]\s*/.exec(meta);
+    if (m) return { year: m[1], rest: meta.slice(m[0].length) };
+    return { year: (year == null ? '' : String(year)), rest: meta };
+  }
+
+  /* ---------- 轻量 Markdown ---------- */
   function inline(s) {
     s = esc(s);
     s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
@@ -20,14 +38,16 @@
     s = s.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
     s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
     s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+|mailto:[^)\s]+|#[^)\s]*)\)/g,
-      function (m, t, u) { return '<a href="' + u + '"' + (/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : '') + '>' + t + '</a>'; });
+      function (m, t, u) {
+        return '<a href="' + u + '"' + (/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : '') + '>' + t + '</a>';
+      });
     return s;
   }
   function md(src) {
     if (!src) return '';
     var lines = String(src).replace(/\r\n/g, '\n').split('\n');
     var out = [], i = 0;
-    function listBlock(marker, ordered) {
+    function listBlock(ordered) {
       var items = [];
       while (i < lines.length) {
         var L = lines[i];
@@ -44,8 +64,8 @@
     while (i < lines.length) {
       var line = lines[i];
       if (/^\s*$/.test(line)) { i++; continue; }
-      var h = /^(#{1,6})\s+(.*)$/.exec(line);
-      if (h) { var lv = Math.min(h[1].length, 4); out.push('<h' + lv + '>' + inline(h[2]) + '</h' + lv + '>'); i++; continue; }
+      var hd = /^(#{1,6})\s+(.*)$/.exec(line);
+      if (hd) { var lv = Math.min(hd[1].length, 4); out.push('<h' + lv + '>' + inline(hd[2]) + '</h' + lv + '>'); i++; continue; }
       if (/^\s*(---|\*\*\*|___)\s*$/.test(line)) { out.push('<hr>'); i++; continue; }
       if (/^\s*```/.test(line)) {
         var buf = []; i++;
@@ -66,8 +86,8 @@
           '</tr></thead><tbody>' + body.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + inline(c) + '</td>'; }).join('') + '</tr>'; }).join('') +
           '</tbody></table>'); continue;
       }
-      if (/^\s*[-*+]\s+/.test(line)) { out.push(listBlock(null, false)); continue; }
-      if (/^\s*\d+[.)]\s+/.test(line)) { out.push(listBlock(null, true)); continue; }
+      if (/^\s*[-*+]\s+/.test(line)) { out.push(listBlock(false)); continue; }
+      if (/^\s*\d+[.)]\s+/.test(line)) { out.push(listBlock(true)); continue; }
       var para = [];
       while (i < lines.length && !/^\s*$/.test(lines[i]) &&
              !/^(#{1,6})\s+/.test(lines[i]) && !/^\s*[-*+]\s+/.test(lines[i]) &&
@@ -89,17 +109,14 @@
     if (opts.pdf) {
       mBody.className = 'pdfbox';
       var isMobile = window.matchMedia('(max-width: 860px)').matches;
-      if (isMobile) {
-        mBody.innerHTML = '<div class="pdffb">手机浏览器可能无法直接内嵌预览 PDF。<br><br>' +
-          '<a href="' + opts.pdf + '" target="_blank" rel="noopener" ' +
-          'style="display:inline-block;padding:10px 18px;background:#fff;color:#3C5A6B;border-radius:8px;font-size:15px;">在新标签页打开 PDF</a></div>';
-      } else {
-        mBody.innerHTML = '<iframe src="' + opts.pdf + '#view=FitH" title="PDF 预览"></iframe>';
-      }
+      mBody.innerHTML = isMobile
+        ? '<div class="pdffb">手机浏览器可能无法直接内嵌预览 PDF。<br><br>' +
+          '<a class="btn btn-primary" href="' + opts.pdf + '" target="_blank" rel="noopener">在新标签页打开 PDF</a></div>'
+        : '<iframe src="' + opts.pdf + '#view=FitH" title="PDF 预览"></iframe>';
     }
     mOpen.style.display = opts.openUrl ? 'inline-flex' : 'none';
     if (opts.openUrl) mOpen.href = opts.openUrl;
-    $('#modal').style.maxWidth = opts.pdf && !window.matchMedia('(max-width: 860px)').matches ? '1000px' : '';
+    $('#modal').style.maxWidth = (opts.pdf && !window.matchMedia('(max-width: 860px)').matches) ? '1000px' : '';
     mask.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -112,175 +129,305 @@
   mask.addEventListener('click', function (e) { if (e.target === mask) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
-  /* ---------- 工具 ---------- */
+  /* ---------- 条目 ---------- */
   function itemTag(it) {
-    if (it.type === 'pdf') return '<span class="tag pdf">PDF</span>';
-    if (it.type === 'url') return '<span class="tag url">链接</span>';
-    if (it.type === 'text') return '<span class="tag doc">正文</span>';
+    if (it.type === 'pdf') return '<span class="tag">PDF</span>';
+    if (it.type === 'url') return '<span class="tag">链接</span>';
+    if (it.type === 'text') return '<span class="tag">正文</span>';
     return '';
   }
-  function itemEl(it) {
-    var inner = '<span class="row"><span class="tt">' + esc(it.title || '') + '</span>' + itemTag(it) + '</span>' +
-      (it.meta ? '<span class="mt">' + esc(it.meta) + '</span>' : '');
-    var li = document.createElement('li');
+  function itemBody(it) {
+    var ym = splitMeta(it.meta, it.year);
+    var inner =
+      '<div class="tt">' + esc(it.title || '') + itemTag(it) + '</div>' +
+      (ym.rest ? '<div class="mt">' + esc(ym.rest) + '</div>' : '');
+    return { year: ym.year, inner: inner };
+  }
+  function itemLi(it) {
+    var b = itemBody(it);
+    var li = h('li');
     li.dataset.id = it.id || '';
+    var cell = b.inner;
     if (it.type === 'url' && it.url) {
-      li.innerHTML = '<a class="it" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + inner + '</a>';
+      li.innerHTML = '<span class="yr">' + esc(b.year) + '</span><a class="it" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + cell + '</a>';
     } else if (it.type === 'pdf' && it.pdf) {
-      li.innerHTML = '<button class="it" data-act="pdf" data-src="' + esc(it.pdf) + '">' + inner + '</button>';
+      li.innerHTML = '<span class="yr">' + esc(b.year) + '</span><button class="it" data-act="pdf" data-src="' + esc(it.pdf) + '">' + cell + '</button>';
     } else if (it.type === 'text' && it.text) {
-      li.innerHTML = '<button class="it" data-act="text" data-id="' + esc(it.id) + '">' + inner + '</button>';
+      li.innerHTML = '<span class="yr">' + esc(b.year) + '</span><button class="it" data-act="text" data-id="' + esc(it.id) + '">' + cell + '</button>';
     } else {
-      li.innerHTML = '<div class="it">' + inner + '</div>';
+      li.innerHTML = '<span class="yr">' + esc(b.year) + '</span><div class="it">' + cell + '</div>';
     }
     return li;
   }
   function listEl(items) {
-    var ul = document.createElement('ul');
-    ul.className = 'list';
+    var ul = h('ul', 'list');
     if (!items || !items.length) {
-      var li = document.createElement('li');
-      li.className = 'empty';
-      li.textContent = '暂无内容';
-      ul.appendChild(li);
+      ul.appendChild(h('li', 'empty', '暂无内容'));
       return ul;
     }
-    items.forEach(function (it) { ul.appendChild(itemEl(it)); });
+    items.forEach(function (it) { ul.appendChild(itemLi(it)); });
     return ul;
   }
 
-  /* ---------- 首页 ---------- */
+  /* 论著列表：年份列 + 标题 + 出处 */
+  function pubListEl(items) {
+    var ul = h('ul', 'pub-list');
+    (items || []).forEach(function (it) {
+      var ym = splitMeta(it.meta, it.year);
+      var li = h('li', 'pub-item');
+      li.dataset.id = it.id || '';
+      var tail = '';
+      if (it.type === 'url' && it.url) tail = '<a class="it" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.title) + '</a>';
+      else if (it.type === 'pdf' && it.pdf) tail = '<button class="it" data-act="pdf" data-src="' + esc(it.pdf) + '">' + esc(it.title) + '</button>';
+      else if (it.type === 'text' && it.text) tail = '<button class="it" data-act="text" data-id="' + esc(it.id) + '">' + esc(it.title) + '</button>';
+      else tail = esc(it.title);
+      li.innerHTML =
+        '<div class="pub-year">' + esc(ym.year) + '</div>' +
+        '<div><div class="pub-title">' + tail + itemTag(it) + '</div>' +
+        (ym.rest ? '<div class="pub-meta">' + esc(ym.rest) + '</div>' : '') + '</div>';
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  /* 项目列表：标题 + 右侧年份 + 说明行 */
+  function grantListEl(items) {
+    var ul = h('ul', 'grant-list');
+    (items || []).forEach(function (it) {
+      var ym = splitMeta(it.meta, it.year);
+      var li = h('li', 'grant-item');
+      li.dataset.id = it.id || '';
+      var titleHtml;
+      if (it.type === 'url' && it.url) titleHtml = '<a class="it" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.title) + '</a>';
+      else if (it.type === 'pdf' && it.pdf) titleHtml = '<button class="it" data-act="pdf" data-src="' + esc(it.pdf) + '">' + esc(it.title) + '</button>';
+      else if (it.type === 'text' && it.text) titleHtml = '<button class="it" data-act="text" data-id="' + esc(it.id) + '">' + esc(it.title) + '</button>';
+      else titleHtml = esc(it.title);
+      li.innerHTML =
+        '<div class="grant-top"><div class="grant-title">' + titleHtml + itemTag(it) + '</div>' +
+        (ym.year ? '<div class="grant-year">' + esc(ym.year) + '</div>' : '') + '</div>' +
+        (ym.rest ? '<div class="grant-meta">' + esc(ym.rest) + '</div>' : '');
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  /* 标签云：用于课程 */
+  function chipCloudEl(items) {
+    var box = h('div', 'chip-cloud');
+    (items || []).forEach(function (it) {
+      var label = it.title || '';
+      var note = splitMeta(it.meta, it.year).rest;
+      var span = h('span', 'chip', esc(label) + (note ? '<span class="cn">' + esc(note) + '</span>' : ''));
+      box.appendChild(span);
+    });
+    return box;
+  }
+
+  /* ---------- 各区块渲染 ---------- */
   function renderHome() {
     var p = DATA.profile || {};
     main.innerHTML = '';
-    var hero = document.createElement('section');
-    hero.className = 'hero';
+
+    /* Hero */
+    var hero = h('section', 'hero');
+    var intro = p.tagline ? '<p>' + esc(p.tagline) + '</p>' : '';
     hero.innerHTML =
-      '<div class="photo"><img src="' + esc(p.photo || 'assets/avatar.svg') + '" alt="' + esc(p.name || '') + '"></div>' +
-      '<div>' +
+      '<div class="wrap hero-inner">' +
+        '<div class="eyebrow">' + esc(p.affil || '个人学术主页') + (p.title ? ' · ' + esc(p.title) : '') + '</div>' +
         '<h1>' + esc(p.name || '') + '</h1>' +
-        (p.title ? '<div class="ttl">' + esc(p.title) + '</div>' : '') +
-        (p.affil ? '<div class="aff">' + esc(p.affil) + '</div>' : '') +
-        (p.roles ? '<div class="roles">' + esc(p.roles) + '</div>' : '') +
-        (p.bio ? '<div class="bio">' + esc(p.bio) + '</div>' : '') +
-      '</div>';
+        (p.enName ? '<div class="en">' + esc(p.enName) + '</div>' : '') +
+        intro +
+      '</div>' +
+      '<div class="scroll-hint">向下浏览</div>';
+    if (!p.tagline && p.bio) {
+      hero.querySelector('.hero-inner').insertAdjacentHTML('beforeend',
+        '<p>' + esc(p.bio.slice(0, 90)) + (p.bio.length > 90 ? '…' : '') + '</p>');
+    }
+    var cta = h('div', 'hero-cta');
+    cta.innerHTML =
+      '<a class="btn btn-primary" href="#/sec-pub">查看论著成果</a>' +
+      '<a class="btn btn-ghost" href="#/contact">联系我</a>';
+    hero.querySelector('.hero-inner').appendChild(cta);
     main.appendChild(hero);
 
-    var grid = document.createElement('div');
-    grid.className = 'home-grid';
+    /* 关于我 */
+    var about = h('section', 'section');
+    about.id = 'about';
+    var wrapA = h('div', 'wrap');
+    wrapA.innerHTML = '<div class="kicker">关于我</div><h2 class="sec-title">简介</h2>';
+    var grid = h('div', 'about-grid');
+    var txt = h('div', 'about-text');
+    var paragraphs = String(p.bio || '').split(/\n+/).filter(Boolean);
+    if (!paragraphs.length) paragraphs = ['暂无简介。'];
+    paragraphs.forEach(function (t) { txt.appendChild(h('p', null, esc(t))); });
+    var photo = h('img', 'profile-photo');
+    photo.src = p.photo || 'assets/avatar.svg';
+    photo.alt = p.name || '';
+    grid.appendChild(txt);
+    grid.appendChild(photo);
+    wrapA.appendChild(grid);
 
-    var c1 = document.createElement('div');
-    c1.className = 'card';
-    c1.innerHTML = '<h3>研究兴趣</h3>';
-    var chips = document.createElement('div');
-    chips.className = 'chips';
-    (p.interests || []).forEach(function (x, i) {
-      var s = document.createElement('span');
-      s.className = 'chip' + (i % 2 ? ' alt' : '');
-      s.textContent = x;
-      chips.appendChild(s);
+    var pillars = h('div', 'pillars');
+    [
+      ['工作单位', p.affil || ''],
+      ['职称', p.title || ''],
+      ['研究方向', (p.interests || []).slice(0, 3).join(' · ')]
+    ].forEach(function (kv) {
+      if (!kv[1]) return;
+      pillars.appendChild(h('div', 'pillar',
+        '<div class="pillar-label">' + esc(kv[0]) + '</div><div class="pillar-val">' + esc(kv[1]) + '</div>'));
     });
-    c1.appendChild(chips);
-    grid.appendChild(c1);
+    if (pillars.children.length) wrapA.appendChild(pillars);
+    about.appendChild(wrapA);
+    main.appendChild(about);
 
-    var c2 = document.createElement('div');
-    c2.className = 'card';
-    c2.innerHTML = '<h3>联系方式</h3>';
-    var ul = document.createElement('ul');
-    ul.className = 'ct-list';
-    (p.contacts || []).forEach(function (c) {
-      var li = document.createElement('li');
-      li.innerHTML = '<span class="lb">' + esc(c.label || '') + '</span><span class="vl">' +
-        (c.href ? '<a href="' + esc(c.href) + '"' + (/^https?:/.test(c.href) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(c.value || '') + '</a>'
-                : esc(c.value || '')) + '</span>';
-      ul.appendChild(li);
-    });
-    c2.appendChild(ul);
-    grid.appendChild(c2);
+    /* 研究兴趣 */
+    if ((p.interests || []).length) {
+      var it = h('section', 'section');
+      it.style.paddingTop = '0';
+      var wrapI = h('div', 'wrap');
+      wrapI.innerHTML = '<div class="kicker">研究方向</div><h2 class="sec-title">研究兴趣</h2>';
+      var cloud = h('div', 'skill-cloud');
+      p.interests.forEach(function (x, idx) {
+        cloud.appendChild(h('span', 'skill-pill' + (idx === 0 ? ' featured' : ''), esc(x)));
+      });
+      wrapI.appendChild(cloud);
+      it.appendChild(wrapI);
+      main.appendChild(it);
+    }
 
-    main.appendChild(grid);
+    /* 学术概览 + 最新动态 */
+    var over = h('section', 'section');
+    over.style.paddingTop = '0';
+    var wrapO = h('div', 'wrap');
+    var hg = h('div', 'home-grid');
 
-    // 快速一览
-    var over = document.createElement('div');
-    over.className = 'home-grid';
-    var c3 = document.createElement('div');
-    c3.className = 'card';
-    c3.innerHTML = '<h3>学术概览</h3><ul class="ct-list" id="statList"></ul>';
-    over.appendChild(c3);
-    var c4 = document.createElement('div');
-    c4.className = 'card';
-    c4.innerHTML = '<h3>最新动态</h3><ul class="ct-list" id="最新List"></ul>';
-    over.appendChild(c4);
+    var cStat = h('div', 'card');
+    cStat.innerHTML = '<h3>学术概览</h3><ul class="ct-list" id="statList"></ul>';
+    hg.appendChild(cStat);
+
+    var cNews = h('div', 'card');
+    cNews.innerHTML = '<h3>最新动态</h3><ul class="ct-list" id="newsList"></ul>';
+    hg.appendChild(cNews);
+
+    wrapO.appendChild(hg);
+    over.appendChild(wrapO);
     main.appendChild(over);
 
     var counts = [];
-    DATA.sections.forEach(function (s) {
+    (DATA.sections || []).forEach(function (s) {
       var n = (s.items || []).length;
       (s.subsections || []).forEach(function (sb) { n += (sb.items || []).length; });
       counts.push('<li><span class="lb">' + esc(s.title) + '</span><span class="vl">' + n + ' 条</span></li>');
     });
-    $('#statList').innerHTML = counts.join('');
+    $('#statList').innerHTML = counts.join('') || '<li><span class="vl">暂无</span></li>';
 
     var recent = allItems().filter(function (x) { return x.item.year; })
       .sort(function (a, b) { return b.item.year - a.item.year; }).slice(0, 6);
-    $('#最新List').innerHTML = recent.length
+    $('#newsList').innerHTML = recent.length
       ? recent.map(function (x) {
           return '<li><span class="lb">' + esc(x.item.year) + '</span><span class="vl">' + esc(x.item.title) + '</span></li>';
         }).join('')
       : '<li><span class="vl">暂无</span></li>';
+
+    /* 联系 */
+    var ct = h('section', 'section');
+    ct.id = 'contact';
+    ct.style.paddingTop = '0';
+    var wrapC = h('div', 'wrap');
+    var contacts = p.contacts || [];
+    var mail = (contacts.filter(function (c) { return /mailto:/.test(c.href || ''); })[0] || {}).value || '';
+    var home = (contacts.filter(function (c) { return /^https?:/.test(c.href || ''); })[0] || {});
+    var card = h('div', 'contact-card');
+    card.innerHTML =
+      '<h2>欢迎<em>交流</em>与合作</h2>' +
+      '<p>如对相关研究方向感兴趣，欢迎通过以下方式联系我。</p>' +
+      (mail ? '<div class="addr">' + esc(mail) + '</div>' : '');
+    var row = h('div', 'contact-row');
+    if (mail) row.insertAdjacentHTML('beforeend', '<a class="btn btn-primary" href="mailto:' + esc(mail) + '">发送邮件</a>');
+    if (home.href) row.insertAdjacentHTML('beforeend', '<a class="btn btn-ghost" href="' + esc(home.href) + '" target="_blank" rel="noopener">学院主页</a>');
+    card.appendChild(row);
+
+    var others = contacts.filter(function (c) { return c.label && c.value && c.value !== mail; });
+    if (others.length) {
+      var ul = h('ul', 'ct-list');
+      ul.style.cssText = 'max-width:460px;margin:34px auto 0;text-align:left;';
+      others.forEach(function (c) {
+        ul.insertAdjacentHTML('beforeend',
+          '<li><span class="lb">' + esc(c.label) + '</span><span class="vl">' +
+          (c.href ? '<a href="' + esc(c.href) + '"' + (/^https?:/.test(c.href) ? ' target="_blank" rel="noopener"' : '') + '>' + esc(c.value) + '</a>' : esc(c.value)) +
+          '</span></li>');
+      });
+      card.appendChild(ul);
+    }
+    wrapC.appendChild(card);
+    ct.appendChild(wrapC);
+    main.appendChild(ct);
   }
 
-  /* ---------- 栏目页 ---------- */
   function renderSection(sec) {
     main.innerHTML = '';
-    var head = document.createElement('div');
-    head.className = 'page-head';
-    head.innerHTML = '<h2>' + esc(sec.title) + '</h2><div class="bar"></div>';
-    main.appendChild(head);
+    var wrap = h('div', 'wrap');
+    wrap.innerHTML =
+      '<div class="page-head"><div class="kicker">' + esc(sec.kicker || '') + '</div>' +
+      '<h2 class="sec-title">' + esc(sec.title) + '</h2>' +
+      (sec.desc ? '<div class="sec-sub">' + esc(sec.desc) + '</div>' : '') + '</div>';
+    var body = h('div', 'section');
+    body.style.paddingTop = '34px';
+    wrap.appendChild(body);
+    main.appendChild(wrap);
 
     var subs = sec.subsections || [];
+    var usePubs = sec.id === 'sec-pub';
+    var useGrants = sec.id === 'sec-proj';
+
+    function block(title, items, subId) {
+      var g = h('div', 'subgroup');
+      if (title) g.appendChild(h('div', 'subgroup-title', esc(title)));
+      if (subId === 'sub-course') g.appendChild(chipCloudEl(items));
+      else if (usePubs) g.appendChild(pubListEl(items));
+      else if (useGrants) g.appendChild(grantListEl(items));
+      else g.appendChild(listEl(items));
+      body.appendChild(g);
+    }
+
     if (subs.length) {
-      subs.forEach(function (sb) {
-        var box = document.createElement('section');
-        box.className = 'sub';
-        var h = document.createElement('h3');
-        h.textContent = sb.title;
-        box.appendChild(h);
-        box.appendChild(listEl(sb.items));
-        main.appendChild(box);
-      });
+      subs.forEach(function (sb) { block(sb.title, sb.items, sb.id); });
     } else {
-      main.appendChild(listEl(sec.items));
+      block('', sec.items, null);
     }
   }
 
   /* ---------- 路由 ---------- */
   function route() {
-    var h = (location.hash || '').replace(/^#\/?/, '');
-    if (!h) h = 'home';
-    Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) {
-      a.classList.toggle('on', a.dataset.route === h);
+    var hash = (location.hash || '').replace(/^#\/?/, '');
+    if (!hash) hash = 'home';
+    Array.prototype.forEach.call(navlinks.querySelectorAll('a'), function (a) {
+      a.classList.toggle('on', a.dataset.route === hash);
     });
-    if (h === 'home') { renderHome(); return; }
-    var sec = (DATA.sections || []).filter(function (s) { return s.id === h; })[0];
-    if (!sec) { renderHome(); return; }
+    if (hash === 'home') { renderHome(); window.scrollTo(0, 0); return; }
+    var sec = (DATA.sections || []).filter(function (s) { return s.id === hash; })[0];
+    if (!sec) { renderHome(); window.scrollTo(0, 0); return; }
     renderSection(sec);
+    window.scrollTo(0, 0);
   }
   function renderNav() {
     var html = '<a href="#/home" data-route="home">首页</a>';
     (DATA.sections || []).forEach(function (s) {
       html += '<a href="#/' + esc(s.id) + '" data-route="' + esc(s.id) + '">' + esc(s.title) + '</a>';
     });
-    nav.innerHTML = html;
+    html += '<a href="#/home" data-scrollto="contact">联系</a>';
+    navlinks.innerHTML = html;
   }
 
-  /* ---------- 事件委托 ---------- */
+  /* ---------- 点击（PDF / 正文） ---------- */
   main.addEventListener('click', function (e) {
     var btn = e.target.closest('button.it');
     if (!btn) return;
     var act = btn.dataset.act;
     if (act === 'pdf') {
-      openModal(btn.querySelector('.tt').textContent, '', { pdf: btn.dataset.src, openUrl: btn.dataset.src });
+      var tt = btn.querySelector('.pub-title') || btn.querySelector('.grant-title') || btn.querySelector('.tt');
+      openModal(tt ? tt.textContent : '', '', { pdf: btn.dataset.src, openUrl: btn.dataset.src });
     } else if (act === 'text') {
       var it = findItem(btn.dataset.id);
       if (it) openModal(it.title, '<div class="md">' + md(it.text) + '</div>');
@@ -316,21 +463,20 @@
     var hits = allItems().filter(function (x) {
       return ((x.item.title || '') + ' ' + (x.item.meta || '') + ' ' + (x.item.text || '')).toLowerCase().indexOf(k) >= 0;
     });
-    // 简介也参与匹配时给出提示
-    var hitsHtml = '';
+    var out = '';
     if (!hits.length) {
-      hitsHtml = '<div class="none">未找到相关内容</div>';
+      out = '<div class="none">未找到相关内容</div>';
     } else {
       var last = '';
       hits.slice(0, 40).forEach(function (x) {
-        var g = (x.sec + (x.sub ? ' · ' + x.sub : ''));
-        if (g !== last) { hitsHtml += '<div class="grp">' + esc(g) + '</div>'; last = g; }
-        hitsHtml += '<a class="hit" href="#/' + esc(x.secId) + '" data-id="' + esc(x.item.id) + '" data-sec="' + esc(x.secId) + '">' +
+        var g = x.sec + (x.sub ? ' · ' + x.sub : '');
+        if (g !== last) { out += '<div class="grp">' + esc(g) + '</div>'; last = g; }
+        out += '<a class="hit" href="#/' + esc(x.secId) + '" data-id="' + esc(x.item.id) + '" data-sec="' + esc(x.secId) + '">' +
           '<div class="t">' + esc(x.item.title) + '</div>' +
           (x.item.meta ? '<div class="m">' + esc(x.item.meta) + '</div>' : '') + '</a>';
       });
     }
-    panel.innerHTML = hitsHtml;
+    panel.innerHTML = out;
     panel.classList.add('open');
   }
   q.addEventListener('input', doSearch);
@@ -357,17 +503,28 @@
     }, 20);
   });
 
-  /* ---------- 汉堡菜单 ---------- */
-  $('#burger').addEventListener('click', function () {
-    nav.classList.toggle('open');
+  /* ---------- 汉堡菜单 / 滚动描边 ---------- */
+  var burger = $('#burger');
+  if (burger) burger.addEventListener('click', function () { navlinks.classList.toggle('open'); });
+  navlinks.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    navlinks.classList.remove('open');
+    if (a.dataset.scrollto) {
+      e.preventDefault();
+      if (location.hash && location.hash !== '#/home') location.hash = '#/home';
+      setTimeout(function () {
+        var t = document.getElementById(a.dataset.scrollto);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
   });
-  nav.addEventListener('click', function (e) {
-    if (e.target.closest('a')) nav.classList.remove('open');
-  });
+  window.addEventListener('scroll', function () {
+    navEl.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
 
   /* ---------- 启动 ---------- */
-  var SITE_DATA = 'data/site.json';
-  fetch(SITE_DATA).then(function (r) {
+  fetch('data/site.json').then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
   }).then(function (d) {
@@ -375,13 +532,15 @@
     document.title = (d.profile && d.profile.name ? d.profile.name + ' · ' : '') +
       ((d.profile && d.profile.affil) || '个人学术主页');
     if (d.profile) {
-      $('#ftName').textContent = [d.profile.name, d.profile.affil].filter(Boolean).join(' · ');
+      var desc = document.querySelector('meta[name="description"]');
+      if (desc && d.profile.bio) desc.setAttribute('content', d.profile.bio.slice(0, 120));
     }
-    $('#yr').textContent = new Date().getFullYear();
+    $('#footerIn').innerHTML =
+      '<div>' + esc([d.profile && d.profile.affil, '© ' + new Date().getFullYear()].filter(Boolean).join(' · ')) + '</div>';
     renderNav();
     route();
   }).catch(function () {
-    main.innerHTML = '<div class="page"><p>数据加载失败，请确认服务已启动。</p></div>';
+    main.innerHTML = '<div class="section"><div class="wrap"><p style="color:#b3a8c4">数据加载失败，请确认通过本地服务器访问（见 README）。</p></div></div>';
   });
 
   window.addEventListener('hashchange', function () { if (DATA) route(); });
