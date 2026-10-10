@@ -195,7 +195,7 @@ nav.scrolled{border-bottom-color:var(--border);}
   display:grid;grid-template-columns:1fr auto;gap:48px;
   align-items:center;margin-bottom:34px;
 }
-.about-text p{color:var(--text-muted);margin-bottom:18px;font-size:16px;}
+.about-text p{color:var(--text-muted);margin-bottom:22px;font-size:16px;line-height:2.05;}
 .about-text p:last-child{margin-bottom:0;}
 .about-text strong{color:var(--text);font-weight:600;}
 .profile-photo{
